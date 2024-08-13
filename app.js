@@ -339,8 +339,8 @@ app.get('/releaser3', async (req, res) => {
         FROM 
             fixed_assets_requisition 
         WHERE 
-            totalCost > 0 
-            AND totalCost <= 2000000;
+            totalCost > 2000000 
+            AND totalCost <= 5000000;
     `;
 
     try {
@@ -378,8 +378,7 @@ app.get('/releaser4', async (req, res) => {
         FROM 
             fixed_assets_requisition 
         WHERE 
-            totalCost > 0 
-            AND totalCost <= 2000000;
+            totalCost > 5000000;
     `;
 
     try {
@@ -438,7 +437,7 @@ app.get('/releaser2-dashboard',releaser2, async (req, res) => {
 app.get('/releaser3-dashboard',releaser3, async (req, res) => {
     try {
         // Query to fetch requisitions with "Pending" approval status for Releaser 1
-        const [results] = await pool.query('SELECT * FROM fixed_assets_requisition WHERE releaser3_approval_status = "Pending"');
+        const [results] = await pool.query('SELECT * FROM fixed_assets_requisition WHERE releaser3_approval_status = "Pending" AND totalcost > 2000000 AND totalCost < 5000000');
        
         // Render the 'releaser1-dashboard' view and pass the fetched requisitions data
         res.render('releaser3-dashboard', { requisitions: results });
@@ -453,7 +452,7 @@ app.get('/releaser3-dashboard',releaser3, async (req, res) => {
 app.get('/releaser4-dashboard',releaser4, async (req, res) => {
     try {
         // Query to fetch requisitions with "Pending" approval status for Releaser 1
-        const [results] = await pool.query('SELECT * FROM fixed_assets_requisition WHERE releaser4_approval_status = "Pending"');
+        const [results] = await pool.query('SELECT * FROM fixed_assets_requisition WHERE releaser4_approval_status = "Pending" AND totalCost > 5000000');
        
         // Render the 'releaser1-dashboard' view and pass the fetched requisitions data
         res.render('releaser4-dashboard', { requisitions: results });
