@@ -10,12 +10,12 @@
     />
     <style>
       body {
-        padding: 20px;
+        /* padding: 10px; */
         background-color: #f8f9fa;
         font-size: smaller;
       }
       .container {
-        max-width: 1200px;
+        max-width: 1600px;
         margin: auto;
       }
       .table-container {
@@ -33,7 +33,7 @@
       .form-inline {
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 3px;
       }
       .form-inline input {
         width: 150px;
@@ -50,13 +50,9 @@
         color: white;
       }
       .small-input {
-        /* width: 100px; Adjust the width as needed */
+        width: 90px !important ;
         height: 30px; /* Adjust the height as needed */
         padding: 0.2rem; /* Adjust the padding as needed */
-      }
-      .btnView {
-        background-color: #8d8e8f;
-        color: white;
       }
     </style>
   </head>
@@ -69,16 +65,21 @@
             <tr>
               <!-- <th>ID</th> -->
               <th>Plant</th>
-              <!-- <th>Profit Center</th> -->
+              <th>Profit Center</th>
               <th>Date Of Requisition</th>
-              <!-- <th>Type</th> -->
-              <!-- <th>Material Code</th> -->
+              <th>Type</th>
+              <th>Material Code</th>
               <th>Description</th>
               <th>Qty</th>
-              <!-- <th>Purchase Type</th> -->
+              <th>Purchase Type</th>
               <th>Total Cost</th>
-              <!-- <th>Payback Period</th> -->
-              <th>View Full Form</th>
+              <th>Payback Period</th>
+              <th>Status 1</th>
+              <th>Status 1 Comments</th>
+              <th>Status 2</th>
+              <th>Status 2 Comments</th>
+              <th>Status 3</th>
+              <th>Status 3 Comments</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -87,30 +88,27 @@
             <tr>
               <!-- <td><%= req.id %></td> -->
               <td><%= req.plant %></td>
-              <!-- <td><%= req.profitCenter %></td> -->
+              <td><%= req.profitCenter %></td>
               <td>
                 <%= new Date(req.dateOfRequisition).toLocaleDateString('en-GB')
                 %>
               </td>
-              <!-- <td><%= req.type %></td> -->
-              <!-- <td><%= req.materialCode %></td> -->
+              <td><%= req.type %></td>
+              <td><%= req.materialCode %></td>
               <td><%= req.description %></td>
               <td><%= req.qty %></td>
-              <!-- <td><%= req.purchaseType %></td> -->
+              <td><%= req.purchaseType %></td>
               <td><%= req.totalCost %></td>
-              <!-- <td><%= req.paybackPeriod %></td> -->
-              <td>
-                <div>
-                  <form action="/view/<%= req.id %>" method="get">
-                    <button type="submit" class="btnView btn-action btn-sm">
-                      View Form
-                    </button>
-                  </form>
-                </div>
-              </td>
+              <td><%= req.paybackPeriod %></td>
+              <td><%= req.releaser1_approval_status %></td>
+              <td><%= req.releaser1_comments %></td>
+              <td><%= req.releaser2_approval_status %></td>
+              <td><%= req.releaser2_comments %></td>
+              <td><%= req.releaser3_approval_status %></td>
+              <td><%= req.releaser3_comments %></td>
               <td>
                 <div class="form-inline">
-                  <form action="/approve/<%= req.id %>" method="POST">
+                  <form action="/approve5/<%= req.id %>" method="POST">
                     <input
                       type="text"
                       name="comments"
@@ -124,7 +122,7 @@
                       Approve
                     </button>
                   </form>
-                  <form action="/reject/<%= req.id %>" method="POST">
+                  <form action="/reject5/<%= req.id %>" method="POST">
                     <input
                       type="text"
                       name="comments"

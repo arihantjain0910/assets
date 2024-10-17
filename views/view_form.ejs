@@ -14,7 +14,8 @@
         font-size: 0.7rem;
       }
       label {
-        font-weight: 700;
+        font-weight: 670;
+        font-size: small;
       }
       .small-input {
         /* width: 100px; Adjust the width as needed */
@@ -51,42 +52,23 @@
         <div class="row mb-3">
           <div class="col-md-2">
             <label for="plant" class="form-label">Plant</label>
-            <select
-              class="form-select small-input"
+            <input
+              class="form-control small-input"
               id="plant"
               name="plant"
-              required
-            >
-              <option value="" disabled selected>Select Plant</option>
-              <option>1100 (BILIYA)</option>
-              <option>1110 (SARERI)</option>
-              <option>1120 (SONIYANA)</option>
-              <option>1200 (DENIM)</option>
-              <option>1300 (WEAVING)</option>
-              <option>1400 (PROCESS)</option>
-              <option>1500 (SEAMLESS)</option>
-              <option>3500 (SVL)</option>
-            </select>
+              readonly
+              value="<%=options.plant%>"
+            />
           </div>
           <div class="col-md-2">
             <label for="profitCenter" class="form-label">Profit Center</label>
-            <select
-              class="form-select small-input"
+            <input
+              class="form-control small-input"
               id="profitCenter"
               name="profitCenter"
-              required
-            >
-              <option value="" disabled selected>Select Profit Center</option>
-              <option>11010</option>
-              <option>11110</option>
-              <option>11120</option>
-              <option>11210</option>
-              <option>12010</option>
-              <option>13010</option>
-              <option>14010</option>
-              <option>15010</option>
-              <option>35010</option>
-            </select>
+              readonly
+              value="<%=options.profitCenter%>"
+            />
           </div>
           <div class="col-md-2">
             <label for="dateOfRequisition" class="form-label">Date</label>
@@ -95,22 +77,19 @@
               class="form-control small-input"
               id="dateOfRequisition"
               name="dateOfRequisition"
-              required
               readonly
+              value="<%=options.dateOfRequisition%>"
             />
           </div>
           <div class="col-md-2">
             <label for="type" class="form-label">Type</label>
-            <select
-              class="form-select small-input"
+            <input
+              class="form-control small-input"
               id="type"
               name="type"
-              required
-            >
-              <option value="" disabled selected>Select</option>
-              <option>MATERIAL</option>
-              <option>SERVICE</option>
-            </select>
+              readonly
+              value="<%=options.type%>"
+            />
           </div>
           <div class="col-md-4">
             <label for="remarks" class="form-label">Remarks</label>
@@ -119,25 +98,93 @@
               class="form-control small-input"
               id="remarks"
               name="remarks"
+              value="<%=options.remarks%>"
             />
           </div>
-
-          <div class="col-md-5 mt-2">
+          <div class="col-md-3 mt-2">
+            <label for="materialCode">Material Code</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="materialCode"
+              readonly
+              value="<%=options.materialCode%>"
+            />
+          </div>
+          <div class="col-md-3 mt-2">
+            <label for="description">Description</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="description"
+              readonly
+              value="<%=options.description%>"
+            />
+          </div>
+          <div class="col-md-3 mt-2">
+            <label for="qty">Quantity</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="qty"
+              readonly
+              value="<%=options.qty%>"
+            />
+          </div>
+          <div class="col-md-3 mt-2">
+            <label for="purchaseType">Purchase Type</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="purchaseType"
+              readonly
+              value="<%=options.purchaseType%>"
+            />
+          </div>
+          <div class="col-md-3 mt-2">
+            <label for="cost_center">Cost Center</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="cost_center"
+              readonly
+              value="<%=options.cost_center%>"
+            />
+          </div>
+          <div class="col-md-3 mt-2">
+            <label for="totalCost">Total Cost</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="totalCost"
+              readonly
+              value="<%=options.totalCost%>"
+            />
+          </div>
+          <div class="col-md-3 mt-2">
+            <label for="totalCost">Payback Period</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="paybackPeriod"
+              readonly
+              value="<%=options.paybackPeriod%>"
+            />
+          </div>
+          <div class="col-md-12 mt-2">
             <label for="assetProcuredAgainst" class="form-label"
               >Is assets procured against replacement/ modification/ upgradation
               with earlier assets</label
             >
-            <select
-              class="form-select small-input"
+            <input
+              class="form-control small-input"
               id="assetProcuredAgainst"
               name="assetProcuredAgainst"
-            >
-              <option value="" selected></option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
+              readonly
+              value="<%=options.assetProcuredAgainst%>"
+            />
           </div>
-          <div class="col-md-7 mt-2">
+          <div class="col-md-12 mt-2">
             <label for="assetsAgainstReplacement" class="form-label"
               >Name of Assets against replacement to be procure (Last detail of
               assets purchase, make, model, serial no., our asset marking
@@ -148,109 +195,14 @@
               class="form-control small-input"
               id="assetsAgainstReplacement"
               name="assetsAgainstReplacement"
+              readonly
+              value="<%=options.assetsAgainstReplacement%>"
             />
           </div>
+          
         </div>
 
-        <!-- Table for Material Details -->
-        <div>
-          <table class="table table-bordered mt-3" id="materialTable">
-            <thead>
-              <tr>
-                <th>SN No.</th>
-                <th>Material Code</th>
-                <th>Description</th>
-                <th>Qty</th>
-                <th>Purchase Type</th>
-                <th>Cost Center</th>
-                <th>Total Cost</th>
-                <th>Payback Period</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>
-                  <input
-                    type="text"
-                    class="form-control small-input"
-                    name="materialCode[]"
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    class="form-control small-input"
-                    name="description[]"
-                    required
-                  />
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    step="0.01"
-                    class="form-control small-input"
-                    name="qty[]"
-                    required
-                  />
-                </td>
-                <td>
-                  <select
-                    class="form-select small-input"
-                    name="purchaseType[]"
-                    required
-                  >
-                    <option value="" disabled selected>Select</option>
-                    <option>NEW</option>
-                    <option>SECOND HAND</option>
-                  </select>
-                </td>
-                <td>
-                  <select
-                    name="cost_center[]"
-                    id="cost_center"
-                    class="form-select small-input"
-                  >
-                    <option value="" selected>Select</option>
-                    <option value="111102801">110102801</option>
-                    <option value="111102801">111102801</option>
-                  </select>
-                </td>
-                <td>
-                  <input
-                    type="number"
-                    step="0.01"
-                    class="form-control small-input"
-                    name="totalCost[]"
-                    required
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    class="form-control small-input"
-                    name="paybackPeriod[]"
-                  />
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    class="btn btn-danger btn-sm remove-row"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <button type="button" class="btn btn-primary btn-sm" id="addRow">
-          Add Row
-        </button>
-        <button type="submit" class="btn btn-success btn-sm">Submit</button>
-      </form>
-    </div>
+      
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
