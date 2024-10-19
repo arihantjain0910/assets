@@ -648,7 +648,7 @@ app.post("/approve/:id", async (req, res) => {
   const { comments } = req.body;
   try {
     await pool.query(
-      'UPDATE fixed_assets_requisition SET releaser1_approval_status = "Approved", releaser1_comments = ? WHERE id = ?',
+      'UPDATE fixed_assets_requisition SET releaser1_approval_status = "Approved", releaser1_comments = ?, releaser1_timestamp = NOW() WHERE id = ?',
       [comments, id]
     );
     res.redirect("/releaser1-dashboard");
@@ -778,7 +778,7 @@ app.post("/reject/:id", async (req, res) => {
   const { comments } = req.body;
   try {
     await pool.query(
-      'UPDATE fixed_assets_requisition SET releaser1_approval_status = "Rejected", releaser1_comments = ? WHERE id = ?',
+      'UPDATE fixed_assets_requisition SET releaser1_approval_status = "Rejected", releaser1_comments = ?,releaser1_timestamp = NOW()  WHERE id = ?',
       [comments, id]
     );
     res.redirect("/releaser1-dashboard");

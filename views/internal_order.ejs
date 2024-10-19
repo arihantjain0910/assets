@@ -10,27 +10,25 @@
     />
     <style>
       body {
-        padding-top: 0px; /* Adjust this value if needed */
+        padding-top: 0px;
         font-size: 0.7rem;
       }
       label {
         font-weight: 700;
       }
       .small-input {
-        /* width: 100px; Adjust the width as needed */
-        height: 30px; /* Adjust the height as needed */
-        padding: 0.2rem; /* Adjust the padding as needed */
+        height: 30px;
+        padding: 0.2rem;
       }
       .navbar {
         font-size: 0.9rem;
-        height: 50px; /* Adjust based on the height of your navbar */
+        height: 50px;
       }
       .container {
         padding-top: 1%;
       }
       .heading {
         color: rgb(0, 0, 0);
-        text-shadow: 10px;
         font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
           "Lucida Sans", Arial, sans-serif;
         font-style: italic;
@@ -66,14 +64,14 @@
               required
             >
               <option value="" disabled selected>Select Plant</option>
-              <option>1100 (BILIYA)</option>
-              <option>1110 (SARERI)</option>
-              <option>1120 (SONIYANA)</option>
-              <option>1200 (DENIM)</option>
-              <option>1300 (WEAVING)</option>
-              <option>1400 (PROCESS)</option>
-              <option>1500 (SEAMLESS)</option>
-              <option>3500 (SVL)</option>
+              <option value="1100">1100 (BILIYA)</option>
+              <option value="1110">1110 (SARERI)</option>
+              <option value="1120">1120 (SONIYANA)</option>
+              <option value="1200">1200 (DENIM)</option>
+              <option value="1300">1300 (WEAVING)</option>
+              <option value="1400">1400 (PROCESS)</option>
+              <option value="1500">1500 (SEAMLESS)</option>
+              <option value="3500">3500 (SVL)</option>
             </select>
           </div>
           <div class="col-md-2">
@@ -129,10 +127,9 @@
               name="remarks"
             />
           </div>
-
           <div class="col-md-5 mt-2">
             <label for="assetProcuredAgainst" class="form-label"
-              >Is assets procured against replacement/ modification/ upgradation
+              >Is assets procured against replacement/modification/upgradation
               with earlier assets</label
             >
             <select
@@ -147,7 +144,7 @@
           </div>
           <div class="col-md-7 mt-2">
             <label for="assetsAgainstReplacement" class="form-label"
-              >Name of Assets against replacement to be procure (Last detail of
+              >Name of Assets against replacement to be procured (Last detail of
               assets purchase, make, model, serial no., our asset marking
               etc)</label
             >
@@ -221,8 +218,6 @@
                     class="form-select small-input"
                   >
                     <option value="" selected>Select</option>
-                    <option value="111102801">110102801</option>
-                    <option value="111102801">111102801</option>
                   </select>
                 </td>
                 <td>
@@ -265,6 +260,35 @@
       $(document).ready(function () {
         let rowIdx = 1;
 
+        // Function to update cost center options based on selected plant
+        function updateCostCenter(plant) {
+          const costCenters = {
+            1100: ["11001100", "11001101", "11001102"],
+            1110: ["11101100", "11101101", "11101102"],
+            1120: ["11201100", "11201101", "11201102"],
+            1200: ["12001100", "12001101", "12001102"],
+            1300: ["13001100", "13001101", "13001102"],
+            1400: ["14001100", "14001101", "14001102"],
+            1500: ["15001100", "15001101", "15001102"],
+            3500: ["35001100", "35001101", "35001102"],
+          };
+
+          const costCenterSelect = $('select[name="cost_center[]"]');
+          costCenterSelect.empty(); // Clear existing options
+          costCenterSelect.append('<option value="" selected>Select</option>');
+
+          if (costCenters[plant]) {
+            costCenters[plant].forEach(function (cc) {
+              costCenterSelect.append(`<option value="${cc}">${cc}</option>`);
+            });
+          }
+        }
+
+        $("#plant").change(function () {
+          const selectedPlant = $(this).val();
+          updateCostCenter(selectedPlant);
+        });
+
         $("#addRow").on("click", function () {
           rowIdx++;
           $("#materialTable tbody").append(`
@@ -275,7 +299,7 @@
                     <td><input type="number" step="0.01" class="form-control small-input" name="qty[]"></td>
                     <td>
                         <select class="form-select small-input" name="purchaseType[]">
-                            <option value=""  selected>Select</option>
+                            <option value="" selected>Select</option>
                             <option>NEW</option>
                             <option>SECOND HAND</option>
                         </select>
@@ -286,9 +310,7 @@
                         id="cost_center"
                         class="form-select small-input"
                         >
-                  <option value=""  selected>Select</option>
-                  <option value="111102801">110102801</option>
-                  <option value="111102801">111102801</option>
+                  <option value="" selected>Select</option>
                 </select>
               </td>
                     <td><input type="number" step="0.01" class="form-control small-input" name="totalCost[]"></td>
