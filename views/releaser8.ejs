@@ -102,7 +102,7 @@
               <th>Description</th>
               <th>Qty</th>
               <th>Total Cost</th>
-              <th>Status</th>
+              <th>Your Status</th>
               <th>Comments</th>
               <th>View Full Form</th>
             </tr>
@@ -121,7 +121,7 @@
               <td><%= req.releaser8_approval_status%></td>
               <td><%= req.releaser8_comments%></td>
               <td>
-                <form action="/view/<%= req.id %>" method="get">
+                <form action="/viewf8/<%= req.id %>" method="get">
                   <button type="submit" class="btnView btn-action btn-sm">
                     View Form
                   </button>

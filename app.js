@@ -914,6 +914,42 @@ app.get("/view/:id", async (req, res) => {
     res.send("some error in db");
   }
 });
+app.get("/viewf7/:id", async (req, res) => {
+  let { id } = req.params;
+  let q = `SELECT * FROM fixed_assets_requisition WHERE id='${id}'`;
+  try {
+    const [result] = await pool.query(q); // Use promise-based syntax
+    let options = result[0];
+    res.render("view_form_for_releaser7.ejs", { options });
+  } catch (err) {
+    console.log(err);
+    res.send("some error in db");
+  }
+});
+app.get("/viewf8/:id", async (req, res) => {
+  let { id } = req.params;
+  let q = `SELECT * FROM fixed_assets_requisition WHERE id='${id}'`;
+  try {
+    const [result] = await pool.query(q); // Use promise-based syntax
+    let options = result[0];
+    res.render("view_form_for_releaser8.ejs", { options });
+  } catch (err) {
+    console.log(err);
+    res.send("some error in db");
+  }
+});
+app.get("/viewf9/:id", async (req, res) => {
+  let { id } = req.params;
+  let q = `SELECT * FROM fixed_assets_requisition WHERE id='${id}'`;
+  try {
+    const [result] = await pool.query(q); // Use promise-based syntax
+    let options = result[0];
+    res.render("view_form_for_releaser9.ejs", { options });
+  } catch (err) {
+    console.log(err);
+    res.send("some error in db");
+  }
+});
 
 app.get("/user-dashboard", async (req, res) => {
   if (req.isAuthenticated()) {
