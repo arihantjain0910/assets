@@ -126,35 +126,35 @@ function releaser4(req, res, next) {
   res.redirect("/login");
 }
 function releaser5(req, res, next) {
-  if (req.isAuthenticated() && req.user && req.user.releaser1) {
+  if (req.isAuthenticated() && req.user && req.user.releaser5) {
     return next();
   }
   req.flash("error", "You are not authorized to access this page.");
   res.redirect("/login");
 }
 function releaser6(req, res, next) {
-  if (req.isAuthenticated() && req.user && req.user.releaser1) {
+  if (req.isAuthenticated() && req.user && req.user.releaser6) {
     return next();
   }
   req.flash("error", "You are not authorized to access this page.");
   res.redirect("/login");
 }
 function releaser7(req, res, next) {
-  if (req.isAuthenticated() && req.user && req.user.releaser1) {
+  if (req.isAuthenticated() && req.user && req.user.releaser7) {
     return next();
   }
   req.flash("error", "You are not authorized to access this page.");
   res.redirect("/login");
 }
 function releaser8(req, res, next) {
-  if (req.isAuthenticated() && req.user && req.user.releaser1) {
+  if (req.isAuthenticated() && req.user && req.user.releaser8) {
     return next();
   }
   req.flash("error", "You are not authorized to access this page.");
   res.redirect("/login");
 }
 function releaser9(req, res, next) {
-  if (req.isAuthenticated() && req.user && req.user.releaser1) {
+  if (req.isAuthenticated() && req.user && req.user.releaser9) {
     return next();
   }
   req.flash("error", "You are not authorized to access this page.");
@@ -270,16 +270,17 @@ app.post("/submit-form", async (req, res) => {
 
     const sql = `
             INSERT INTO fixed_assets_requisition 
-            (user_id, plant, profitCenter, dateOfRequisition, type, materialCode, description, qty, purchaseType,cost_center, totalCost, paybackPeriod,remarks,
+            (user_id,employee_code, plant, profitCenter, dateOfRequisition, type, materialCode, description, qty, purchaseType,cost_center, totalCost, paybackPeriod,remarks,
       assetProcuredAgainst,
       assetsAgainstReplacement)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
         `;
 
     if (Array.isArray(materialCode)) {
       for (let index = 0; index < materialCode.length; index++) {
         const values = [
           req.user.id, // Add the user ID here
+          req.user.employee_code, // Add the user ID here
           plant,
           profitCenter,
           dateOfRequisition,
@@ -306,6 +307,7 @@ app.post("/submit-form", async (req, res) => {
     } else {
       const values = [
         req.user.id, // Add the user ID here
+        req.user.employee_code, // Add the user ID here
         plant,
         profitCenter,
         dateOfRequisition,
@@ -441,7 +443,7 @@ app.get("/releaser7", async (req, res) => {
         SELECT * 
 FROM fixed_assets_requisition 
 WHERE (plant = 1100 OR plant = 1110 OR plant = 1120 OR plant = 1200)
-AND (totalCost > 2000000 AND totalCost < 5000000);
+AND (totalCost > 2000000);
     `;
 
   try {
@@ -458,7 +460,7 @@ app.get("/releaser8", async (req, res) => {
         SELECT * 
 FROM fixed_assets_requisition 
 WHERE (plant = 1300 OR plant = 1400 OR plant = 1500 OR plant = 3500)
-AND (totalCost > 2000000 AND totalCost < 5000000);
+AND (totalCost > 2000000);
     `;
 
   try {

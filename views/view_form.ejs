@@ -10,7 +10,7 @@
     />
     <style>
       body {
-        padding-top: 0px; /* Adjust this value if needed */
+        padding-top: 20px; /* Adjust this value if needed */
         font-size: 0.7rem;
       }
       label {
@@ -43,14 +43,33 @@
           />
           Sangam India Limited
         </a>
+        <!-- <a
+          href="/releaser1-dashboard"
+          class="nav-link"
+          style="color: white; margin-left: 800px"
+          >Pending Status</a
+        >
+        <a href="/releaser1" class="nav-link" style="color: white"
+          >Your Dashboard</a
+        > -->
         <a href="/logout" class="nav-link" style="color: white">Logout</a>
       </div>
     </nav>
     <div class="container mt-5">
-      <h5 class="text-center mb-4">Fixed Assets Requisition Form</h5>
+      <h4 class="text-center mb-4">Fixed Assets Requisition Form</h4>
       <form action="/submit-form" method="POST">
-        <div class="row mb-3">
-          <div class="col-md-2">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="employee_code" class="form-label">Employee Code</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              name="employee_code"
+              readonly
+              value="<%=options.employee_code%>"
+            />
+          </div>
+          <div class="col-md-3">
             <label for="plant" class="form-label">Plant</label>
             <input
               class="form-control small-input"
@@ -60,7 +79,7 @@
               value="<%=options.plant%>"
             />
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label for="profitCenter" class="form-label">Profit Center</label>
             <input
               class="form-control small-input"
@@ -70,20 +89,21 @@
               value="<%=options.profitCenter%>"
             />
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label for="dateOfRequisition" class="form-label">Date</label>
             <input
-              type="date"
+              type="text"
               class="form-control small-input"
               id="dateOfRequisition"
               name="dateOfRequisition"
               readonly
-              value="<%=options.dateOfRequisition%>"
+              value="<%=new Date(options.dateOfRequisition).toLocaleDateString('en-GB')%>"
             />
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label for="type" class="form-label">Type</label>
             <input
+            type="text"
               class="form-control small-input"
               id="type"
               name="type"
@@ -91,18 +111,9 @@
               value="<%=options.type%>"
             />
           </div>
-          <div class="col-md-4">
-            <label for="remarks" class="form-label">Remarks</label>
-            <input
-              type="text"
-              class="form-control small-input"
-              id="remarks"
-              name="remarks"
-              value="<%=options.remarks%>"
-            />
-          </div>
-          <div class="col-md-3 mt-2">
-            <label for="materialCode">Material Code</label>
+          
+          <div class="col-md-3">
+            <label for="materialCode" class="form-label">Material Code</label>
             <input
               type="text"
               class="form-control small-input"
@@ -111,8 +122,8 @@
               value="<%=options.materialCode%>"
             />
           </div>
-          <div class="col-md-3 mt-2">
-            <label for="description">Description</label>
+          <div class="col-md-3 ">
+            <label for="description" class="form-label">Description</label>
             <input
               type="text"
               class="form-control small-input"
@@ -121,8 +132,8 @@
               value="<%=options.description%>"
             />
           </div>
-          <div class="col-md-3 mt-2">
-            <label for="qty">Quantity</label>
+          <div class="col-md-3 ">
+            <label for="qty" class="form-label">Quantity</label>
             <input
               type="text"
               class="form-control small-input"
@@ -131,8 +142,8 @@
               value="<%=options.qty%>"
             />
           </div>
-          <div class="col-md-3 mt-2">
-            <label for="purchaseType">Purchase Type</label>
+          <div class="col-md-3 ">
+            <label for="purchaseType" class="form-label">Purchase Type</label>
             <input
               type="text"
               class="form-control small-input"
@@ -141,8 +152,8 @@
               value="<%=options.purchaseType%>"
             />
           </div>
-          <div class="col-md-3 mt-2">
-            <label for="cost_center">Cost Center</label>
+          <div class="col-md-3 ">
+            <label for="cost_center" class="form-label">Cost Center</label>
             <input
               type="text"
               class="form-control small-input"
@@ -151,8 +162,8 @@
               value="<%=options.cost_center%>"
             />
           </div>
-          <div class="col-md-3 mt-2">
-            <label for="totalCost">Total Cost</label>
+          <div class="col-md-3 ">
+            <label for="totalCost" class="form-label">Total Cost</label>
             <input
               type="text"
               class="form-control small-input"
@@ -161,8 +172,8 @@
               value="<%=options.totalCost%>"
             />
           </div>
-          <div class="col-md-3 mt-2">
-            <label for="totalCost">Payback Period</label>
+          <div class="col-md-3 ">
+            <label for="totalCost" class="form-label">Payback Period</label>
             <input
               type="text"
               class="form-control small-input"
@@ -171,7 +182,18 @@
               value="<%=options.paybackPeriod%>"
             />
           </div>
-          <div class="col-md-12 mt-2">
+          <div class="col-md-3">
+            <label for="remarks" class="form-label">Remarks</label>
+            <input
+              type="text"
+              class="form-control small-input"
+              id="remarks"
+              name="remarks"
+              value="<%=options.remarks%>"
+              readonly
+            />
+          </div>
+          <div class="col-md-12 ">
             <label for="assetProcuredAgainst" class="form-label"
               >Is assets procured against replacement/ modification/ upgradation
               with earlier assets</label
@@ -184,7 +206,7 @@
               value="<%=options.assetProcuredAgainst%>"
             />
           </div>
-          <div class="col-md-12 mt-2">
+          <div class="col-md-12 ">
             <label for="assetsAgainstReplacement" class="form-label"
               >Name of Assets against replacement to be procure (Last detail of
               assets purchase, make, model, serial no., our asset marking
@@ -255,9 +277,9 @@
         });
       });
     </script>
-    <script>
+    <!-- <script>
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("dateOfRequisition").value = today;
-    </script>
+    </script> -->
   </body>
 </html>

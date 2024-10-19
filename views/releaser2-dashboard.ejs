@@ -33,13 +33,13 @@
       .form-inline {
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 15px;
       }
       .form-inline input {
-        width: 150px;
+        width: 100px;
       }
       .btn-action {
-        margin-top: 5px;
+        margin-top: 0px;
       }
       .btn-approve {
         background-color: #28a745;
@@ -50,14 +50,45 @@
         color: white;
       }
       .small-input {
-            width: 90px !important; 
-            height: 30px; /* Adjust the height as needed */
-            padding: 0.2rem; /* Adjust the padding as needed */
-        }
+        /* width: 100px; Adjust the width as needed */
+        height: 30px; /* Adjust the height as needed */
+        padding: 0.2rem; /* Adjust the padding as needed */
+      }
+      .btnView {
+        background-color: #8d8e8f;
+        color: white;
+      }
+      .navbar {
+        font-size: 0.9rem;
+        height: 50px; /* Adjust based on the height of your navbar */
+      }
     </style>
   </head>
   <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="">
+          <img
+            src="https://sangamgroup.com/wp-content/uploads/2023/01/sangam_group_logo.png"
+            alt="Logo"
+            width="50"
+            height="43"
+          />
+          Sangam India Limited
+        </a>
+        <a
+          href="/releaser2-dashboard"
+          class="nav-link"
+          style="color: white; margin-left: 800px"
+          >Pending Status</a
+        >
+        <a href="/releaser2" class="nav-link" style="color: white"
+          >Your Dashboard</a
+        >
+        <a href="/logout" class="nav-link" style="color: white">Logout</a>
+      </div>
+    </nav>
+    <div class="container mt-5">
       <h4 class="text-center">Pending Approvals</h4>
       <div class="table-container">
         <table class="table table-striped table-bordered">
@@ -65,17 +96,16 @@
             <tr>
               <!-- <th>ID</th> -->
               <th>Plant</th>
-              <th>Profit Center</th>
+              <!-- <th>Profit Center</th> -->
               <th>Date Of Requisition</th>
-              <th>Type</th>
-              <th>Material Code</th>
+              <!-- <th>Type</th> -->
+              <!-- <th>Material Code</th> -->
               <th>Description</th>
               <th>Qty</th>
-              <th>Purchase Type</th>
+              <!-- <th>Purchase Type</th> -->
               <th>Total Cost</th>
-              <th>Payback Period</th>
-              <th>Status 1</th>
-              <th>Status 1 Comments</th>
+              <!-- <th>Payback Period</th> -->
+              <th>View Full Form</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -84,38 +114,56 @@
             <tr>
               <!-- <td><%= req.id %></td> -->
               <td><%= req.plant %></td>
-              <td><%= req.profitCenter %></td>
-              <td><%= new Date(req.dateOfRequisition).toLocaleDateString('en-GB') %></td>
-              <td><%= req.type %></td>
-              <td><%= req.materialCode %></td>
+              <!-- <td><%= req.profitCenter %></td> -->
+              <td>
+                <%= new Date(req.dateOfRequisition).toLocaleDateString('en-GB')
+                %>
+              </td>
+              <!-- <td><%= req.type %></td> -->
+              <!-- <td><%= req.materialCode %></td> -->
               <td><%= req.description %></td>
               <td><%= req.qty %></td>
-              <td><%= req.purchaseType %></td>
+              <!-- <td><%= req.purchaseType %></td> -->
               <td><%= req.totalCost %></td>
-              <td><%= req.paybackPeriod %></td>
-              <td><%= req.releaser1_approval_status %></td>
-              <td><%= req.releaser1_comments %></td>
+              <!-- <td><%= req.paybackPeriod %></td> -->
+              <td>
+                <div>
+                  <form action="/view/<%= req.id %>" method="get">
+                    <button type="submit" class="btn-sm btn btn-link">
+                      View Form
+                    </button>
+                  </form>
+                </div>
+              </td>
               <td>
                 <div class="form-inline">
-                  <form action="/approve2/<%= req.id %>" method="POST">
-                    <input
-                      type="text"
-                      name="comments"
-                      class="form-control small-input"
-                      placeholder="Comments"
-                    />
-                    <button type="submit" class="btn btn-approve btn-action btn-sm">
+                  <input
+                    type="text"
+                    name="comments"
+                    class="form-control small-input"
+                    placeholder="Comments"
+                  />
+                  <form
+                    action="/approve2/<%= req.id %>"
+                    method="POST"
+                    style="display: inline"
+                  >
+                    <button
+                      type="submit"
+                      class="btn btn-approve btn-action btn-sm"
+                    >
                       Approve
                     </button>
                   </form>
-                  <form action="/reject2/<%= req.id %>" method="POST">
-                    <input
-                      type="text"
-                      name="comments"
-                      class="form-control small-input"
-                      placeholder="Comments"
-                    />
-                    <button type="submit" class="btn btn-reject btn-action btn-sm">
+                  <form
+                    action="/reject2/<%= req.id %>"
+                    method="POST"
+                    style="display: inline"
+                  >
+                    <button
+                      type="submit"
+                      class="btn btn-reject btn-action btn-sm"
+                    >
                       Reject
                     </button>
                   </form>
@@ -129,4 +177,3 @@
     </div>
   </body>
 </html>
- 
